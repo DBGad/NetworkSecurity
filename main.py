@@ -4,6 +4,9 @@ from networksecurity.components.data_ingestion import DataIngestion
 from networksecurity.entity.config_entity import DataIngestionConfig
 from networksecurity.entity.config_entity import TrainingPipelineConfig
 from networksecurity.entity.artifacts_entity import DataIngestionArtifact
+from networksecurity.components.data_validation import DataValidation
+from networksecurity.entity.config_entity import DataValidationConfig
+from networksecurity.entity.artifacts_entity import DataValidationArtifact
 
 import sys 
 
@@ -16,5 +19,9 @@ if __name__ == "__main__" :
         Data_Ingestion_Artifact:DataIngestionArtifact = Data_Ingestion.initiate_data_ingestion()
         print(Data_Ingestion_Artifact.train_data_path)
         print(Data_Ingestion_Artifact.test_data_path)
+        Data_Validation_Config = DataValidationConfig(Training_Pipeline_Config)
+        Data_Validation =DataValidation(Data_Ingestion_Artifact,Data_Validation_Config)
+        Data_Validation_Artifact:DataValidationArtifact = Data_Validation.initiate_data_validation()
+        print(Data_Validation_Artifact)
     except Exception as e :
         raise NetworkSecurityException(e,sys)
