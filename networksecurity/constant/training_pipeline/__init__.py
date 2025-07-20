@@ -39,3 +39,20 @@ DATA_VALIDATION_VALID_DATA_DIR :str = 'validated'
 DATA_VALIDATION_INVALID_DATA_DIR :str = 'invalidated'
 DATA_VALIDATION_DRIFT_REPORT_DIR: str = 'drift_report'
 DATA_VALIDATION_DRIFT_REPORT_FILE_NAME :str = 'report.yaml'
+
+
+""" 
+Data Transformation Related Constant like -> DATA_TRANSFORMATION VAR NAME
+"""
+DATA_TRANSFORMATION_DIR_NAME:str = 'data_transformation'
+DATA_TRANSFORMATION_DATA_TRANSFORMED_DIR:str = 'transformed'
+DATA_TRANSFORMATION_MODEL_DIR:str = 'transformed_object'
+DATA_TRANSFORMATION_MODEL_FILE_NAME:str = 'preporocessor.pkl'
+DATA_TRANSFORMATION_TRAIN_FILE_NAME: str = "train.npy"
+DATA_TRANSFORMATION_TEST_FILE_NAME: str = "test.npy"
+## Knn imputer to replace nan vlaues
+DATA_TRANSFORMATION_IMPUTER_PARAMS :dict ={
+    'missing_values' : np.nan,
+    'n_neighbors':3,
+    'weights' : 'uniform'
+} 
