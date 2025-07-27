@@ -10,6 +10,8 @@ from networksecurity.entity.artifacts_entity import DataValidationArtifact
 from networksecurity.components.data_transformation import DataTransformation
 from networksecurity.entity.config_entity import DataTransformationConfig
 from networksecurity.entity.artifacts_entity import DataTransformationArtifact
+from networksecurity.components.model_trainer import ModelTrainer
+from networksecurity.entity.config_entity import ModelTrainerConfig
 
 import sys 
 
@@ -30,6 +32,10 @@ if __name__ == "__main__" :
         Data_Transformation=DataTransformation(Data_Transformation_Config,Data_Validation_Artifact)
         Data_Transformation_Artifact:DataTransformationArtifact =Data_Transformation.initiate_data_transformation()
         print(Data_Transformation_Artifact) 
+        ModelTrainer_Config = ModelTrainerConfig(Training_Pipeline_Config)
+        Model_Trainer = ModelTrainer(ModelTrainer_Config,Data_Transformation_Artifact)
+        Model_Trainer.initate_model_trainer()
+
 
     except Exception as e :
         raise NetworkSecurityException(e,sys)
