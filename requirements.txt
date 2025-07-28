@@ -9,5 +9,8 @@ pyyaml
 optuna
 mlflow
 dagshub
+fastapi
+uvicorn
+python-multipart>=0.0.5
 
--e .
+#-e .

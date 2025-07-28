@@ -127,7 +127,7 @@ class ModelTrainer:
         except Exception as e:
             raise NetworkSecurityException(e,sys)
 
-    def initate_model_trainer(self)-> ModelTrainerArtifact:
+    def initiate_model_trainer(self)-> ModelTrainerArtifact:
         try:
             train_file_path = self.Data_Transformation_Artifact.transformed_train_data_file_path
             test_file_path = self.Data_Transformation_Artifact.transformed_test_data_file_path
