@@ -22,7 +22,7 @@ from networksecurity.utils.main_utils.utils import load_array_data,evaluate_mode
 from networksecurity.utils.ml_utils.metric.classification_metric import get_classification_score
 
 # Initialize dagshub tracking
-dagshub.init(repo_owner='DBGad', repo_name='NetworkSecurity', mlflow=True)
+#dagshub.init(repo_owner='DBGad', repo_name='NetworkSecurity', mlflow=True)
 
 class ModelTrainer:
     def __init__(self,Model_Trainer_Config:ModelTrainerConfig,Data_Transformation_Artifact:DataTransformationArtifact):
