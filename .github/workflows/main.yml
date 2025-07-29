@@ -78,13 +78,20 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Clean docker space before pulling
+        run: |
+          docker container prune -f
+          docker image prune -af
+          docker volume prune -f
+          docker builder prune -af
+
       - name: Pull latest image
         run: |
           docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
-      - name: Stop and remove existing container if running
+      - name: Stop and remove existing container if exists
         run: |
-          docker ps -a -q --filter "name=networksecurity" | grep -q . && docker stop networksecurity && docker rm -fv networksecurity || echo "No existing container"
+          docker ps -q --filter "name=networksecurity" | grep -q . && docker stop networksecurity && docker rm -fv networksecurity || echo "No container to remove"
 
       - name: Run Docker Image to serve users
         run: |
@@ -94,6 +101,6 @@ jobs:
           -e 'AWS_REGION=${{ secrets.AWS_REGION }}' \
           ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
-      - name: Clean previous images and containers
+      - name: Clean dangling docker resources
         run: |
           docker system prune -f
